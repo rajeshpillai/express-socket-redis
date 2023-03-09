@@ -11,7 +11,7 @@ const socket = io('http://localhost:4000');
 
 await redisClient.connect();
 
-const socketId = 'RCN87jyJKH0Ns44RAAAF'; // replace with the actual socket ID
+const socketId = 'bXuK4DnfiBq8N3IBAAAL'; // replace with the actual socket ID
 
 console.log("Console app started...");
 
