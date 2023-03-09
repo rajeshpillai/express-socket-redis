@@ -1,20 +1,10 @@
-// const express = require('express');
 import express from 'express';
 const app = express();
 
-//const http = require('http');
 import http from 'http';
 
-const server = http.createServer(app);
-
-
-// const { Server } = require("socket.io");
 import {Server} from 'socket.io';
-
-// const path = require('path');
 import path from 'path';
-
-// const redis = require('redis');
 import redis from 'redis';
 
 const redisClient = redis.createClient({
@@ -22,11 +12,11 @@ const redisClient = redis.createClient({
   port: 6379,
 });
 
-
+const server = http.createServer(app);
 const io = new Server(server);
 
+// Connect to redis
 await redisClient.connect();
-
 
 app.get('/', (req, res) => {
   console.log(`Serving index.html ${path.resolve("./public/index.html")}`);
@@ -50,7 +40,7 @@ io.on('connection', async (socket) => {
     console.log('Received private message from server:', data);
     // Emit the message to the recipient
     io.to(data.recipient).emit('private_message', data);
-    
+
   });
 
 });

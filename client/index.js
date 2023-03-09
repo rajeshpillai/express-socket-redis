@@ -11,7 +11,7 @@ const socket = io('http://localhost:4000');
 
 await redisClient.connect();
 
-const socketId = 'D3JWhePdX6tjtZRqAAAN'; // replace with the actual socket ID
+const socketId = 'RCN87jyJKH0Ns44RAAAF'; // replace with the actual socket ID
 
 console.log("Console app started...");
 
@@ -19,5 +19,7 @@ const result = await redisClient.get(`socket:${socketId}`);
 console.log(`Getting socket id from redis ${result}`);
 
 socket.emit('private_message', { 
-  message: `Hello specific client! at ${new Date()}`, recipient: socketId });
+  message: `Hello specific client! at ${new Date()}`, 
+  recipient: socketId 
+});
 
